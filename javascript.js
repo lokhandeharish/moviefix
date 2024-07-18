@@ -257,8 +257,7 @@ function loadMore() {
 }
 
 function bindScroll() {
-	if ($(window).scrollTop() + $(window).height() > $(document).height() - 10) {
-		alert()
+	if ($(document).scrollTop() + $(document).height() > $(document).height() - 10) {
 		$(window).unbind('scroll');
 		$(document.body).unbind('touchmove')
 		setTimeout(function() {
