@@ -265,3 +265,4 @@ function bindScroll() {
 }
 
 $(window).scroll(bindScroll);
+$(document.body).on('touchmove',bindScroll)
