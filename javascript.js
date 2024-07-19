@@ -244,27 +244,22 @@ const showMovies = (data) => {
 	}
 }
 
-function loadMore() {
+async function loadMore() {
 	let currentDate = new Date().getFullYear();
 	if (startYear < currentDate) {
 		startYear++
-		getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=bf388abad0e6e262e3fdd564f4a91c82&page=1&primary_release_year=${startYear}&sort_by=popularity.desc`);
+		await getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=bf388abad0e6e262e3fdd564f4a91c82&page=1&primary_release_year=${startYear}&sort_by=popularity.desc`);
 		$(window).unbind('scroll');
-		$(document.body).unbind('touchmove');
 	}
 	$(window).bind('scroll', bindScroll);
-	$(document.body).on('touchmove',bindScroll)
 }
 
 function bindScroll() {
 	if ($(document).scrollTop() + $(document).height() > $(document).height() - 10) {
 		$(window).unbind('scroll');
-		$(document.body).unbind('touchmove')
 		setTimeout(function() {
 			loadMore();
-		}, 500)
+		}, 1000)
 	}
 }
-
 $(window).scroll(bindScroll);
-$(document.body).on('touchmove',bindScroll)
