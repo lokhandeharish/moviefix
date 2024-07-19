@@ -255,11 +255,21 @@ async function loadMore() {
 }
 
 function bindScroll() {
-	if ($(document).scrollTop() + $(document).height() > $(document).height() - 10) {
-		$(window).unbind('scroll');
-		setTimeout(function() {
-			loadMore();
-		}, 1000)
-	}
+	var clientWidth= document.body.clientWidth;
+	if(clientWidth < 1025){
+		if ($(document).scrollTop() + $(document).height() > $(document).height() - 10) {
+			$(window).unbind('scroll');
+			setTimeout(function() {
+				loadMore();
+			}, 1000)
+		}
+   } else {
+		if ($(window).scrollTop() + $(window).height() > $(document).height() - 10) {
+			$(window).unbind('scroll');
+				setTimeout(function() {
+					loadMore();
+				}, 1000)
+		}
+   }
 }
 $(window).scroll(bindScroll);
